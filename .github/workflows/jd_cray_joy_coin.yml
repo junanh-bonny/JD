@@ -41,5 +41,6 @@ jobs:
           node jd_crazy_joy_coin.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          BUY_JOY_LEVEL: ${{ secrets.BUY_JOY_LEVEL }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
