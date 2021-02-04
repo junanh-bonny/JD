@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: Maomaoyu0319/JD_0301
+          repository: junanh-bonny/JD-GT
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
