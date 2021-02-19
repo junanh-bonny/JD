@@ -1,16 +1,17 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
+
 name: jd_bookshop
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 23,4,10 * * *'
+    - cron: '0 */4 * * *' #每4小时运行一次
   watch:
     types: started
   repository_dispatch:
-    types: jd_bookshoop
+    types: jdbookshop
 jobs:
   build:
 
@@ -20,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: Maomaoyu0319/JD_0301
+          repository: Jone2008/JD
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -35,25 +36,17 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【东东图书馆】'
+      - name: '运行 【京东口袋书店】'
         run: |
           node jd_bookshop.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          FRUITSHARECODES: ${{ secrets.FRUITSHARECODES }}
-          FRUIT_BEAN_CARD: ${{ secrets.FRUIT_BEAN_CARD }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          FRUIT_NOTIFY_CONTROL: ${{ secrets.FRUIT_NOTIFY_CONTROL }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          QQ_SKEY: ${{ secrets.QQ_SKEY }}
-          QQ_MODE: ${{ secrets.QQ_MODE }}
-          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
-          PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
