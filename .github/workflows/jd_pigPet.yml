@@ -6,11 +6,11 @@ name: jd_pigPet
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 * * * *'
+    - cron: '12 * * * *' #北京时间8点开始运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
-    types: jd_pigPet
+    types: pigPet
 jobs:
   build:
 
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: Maomaoyu0319/JD_0301
+          repository: Jone2008/JD
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -35,10 +35,17 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【金融养猪】'
+      - name: '运行 【养猪脚本】'
         run: |
           node jd_pigPet.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
